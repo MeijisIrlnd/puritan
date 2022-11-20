@@ -9,14 +9,14 @@
 */
 
 #include "PadManager.h"
-
+#include <PluginProcessor.h>
 namespace Puritan::UI
 {
     PadManager::PadManager()
     {
         setInterceptsMouseClicks(false, true);
         for (auto i = 0; i < 16; i++) {
-            m_pads.emplace_back(new Pad(i));
+            m_pads.emplace_back(new Pad(i, i));
             addAndMakeVisible(m_pads.back().get());
             m_pads.back()->addListener(this);
         }
@@ -45,9 +45,15 @@ namespace Puritan::UI
     }
 
 
-    void PadManager::onPadClicked(PURITAN_UNUSED const Pad& clickedPad)
+    void PadManager::onPadClicked(const Pad& clickedPad)
     {
-       // auto* p = PuritanAudioProcessor::getInstance();
-        // So this should just schedule a midi note.. 
+        auto index = clickedPad.getIndex();
+        PuritanAudioProcessor::getInstance()->triggerPad(index);
+    }
+
+    void PadManager::fileDroppedOnPad(const Pad& pad, const juce::File& f)
+    {
+        auto index = pad.getIndex();
+        PuritanAudioProcessor::getInstance()->loadToPad(index, f);
     }
 }

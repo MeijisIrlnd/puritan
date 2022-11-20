@@ -113,6 +113,7 @@ void PuritanAudioProcessor::changeProgramName (PURITAN_UNUSED int index, PURITAN
 //==============================================================================
 void PuritanAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
+    m_sampleRate = sampleRate;
     m_previewPlayer.prepareToPlay(samplesPerBlock, sampleRate);
     for (auto& item : m_padPlayers)
     {
@@ -185,6 +186,11 @@ void PuritanAudioProcessor::getStateInformation (PURITAN_UNUSED juce::MemoryBloc
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
+}
+
+void PuritanAudioProcessor::loadToPad(int padIndex, const juce::File& toLoad)
+{
+    m_padPlayers[padIndex]->setSample(toLoad);
 }
 
 void PuritanAudioProcessor::triggerPad(int padIndex)

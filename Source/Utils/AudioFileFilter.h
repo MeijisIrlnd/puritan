@@ -27,7 +27,7 @@ namespace Puritan::Utils
         }
 
         bool isDirectorySuitable(PURITAN_UNUSED const juce::File& directory) const override { return true; }
-    private: 
-        std::array<juce::String, 5> extensions = { ".wav", ".mp3", ".ogg", ".aiff", ".flac" };
+
+        static std::array<juce::String, 5> extensions;
     };
 }

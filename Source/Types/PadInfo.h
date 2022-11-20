@@ -11,6 +11,7 @@
 #pragma once
 #include <string>
 #include <JuceHeader.h>
+#include <Utils/Utilities.h>
 namespace Puritan
 {
     struct PadInfo
@@ -20,9 +21,6 @@ namespace Puritan
         juce::AudioBuffer<float> audioData;
 
         PadInfo() = default;
-        PadInfo(const std::string& path_) : path(path_)
-        {
-            // Load here..
-        }
+        PadInfo(const juce::File& f);
     };
 }

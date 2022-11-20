@@ -140,6 +140,8 @@
   <ItemGroup>
     <ClCompile Include="..\..\Source\Audio\FilePreviewPlayer.cpp"/>
     <ClCompile Include="..\..\Source\Audio\PadPlayer.cpp"/>
+    <ClCompile Include="..\..\Source\Types\PadInfo.cpp"/>
+    <ClCompile Include="..\..\Source\Utils\AudioFileFilter.cpp"/>
     <ClCompile Include="..\..\Source\Utils\Utilities.cpp"/>
     <ClCompile Include="..\..\Source\UI\LF.cpp"/>
     <ClCompile Include="..\..\Source\UI\Pad.cpp"/>

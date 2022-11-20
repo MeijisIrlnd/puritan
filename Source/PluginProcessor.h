@@ -56,12 +56,15 @@ public:
     //==============================================================================
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
+    void loadToPad(int padIndex, const juce::File& toLoad);
     void triggerPad(int padIndex);
     PURITAN_INLINE juce::AudioFormatManager* getFormatManager() { return &m_formatManager; }
     PURITAN_INLINE Puritan::Audio::FilePreviewPlayer* getPreviewPlayer() { return &m_previewPlayer; }
+    PURITAN_INLINE double getSampleRate() const { return m_sampleRate; }
 private:
     static std::mutex m_mutex;
     static PuritanAudioProcessor* m_instance;
+    double m_sampleRate{ 0 };
     juce::AudioFormatManager m_formatManager;
     //std::vector<std::unique_ptr<Puritan::PadInfo> > m_pads;
     Puritan::Audio::FilePreviewPlayer m_previewPlayer;

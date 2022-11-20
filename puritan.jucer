@@ -37,9 +37,12 @@
         <FILE id="CszJdi" name="PadPlayer.h" compile="0" resource="0" file="Source/Audio/PadPlayer.h"/>
       </GROUP>
       <GROUP id="{3DBC5282-C9BF-5FA6-4E67-BCB534A35BFB}" name="Types">
+        <FILE id="AbuPzS" name="PadInfo.cpp" compile="1" resource="0" file="Source/Types/PadInfo.cpp"/>
         <FILE id="DNa0mg" name="PadInfo.h" compile="0" resource="0" file="Source/Types/PadInfo.h"/>
       </GROUP>
       <GROUP id="{CB3C3754-F30A-82EE-0E09-16E734CAEBD8}" name="Utils">
+        <FILE id="DiSuSj" name="AudioFileFilter.cpp" compile="1" resource="0"
+              file="Source/Utils/AudioFileFilter.cpp"/>
         <FILE id="GJZx6H" name="AudioFileFilter.h" compile="0" resource="0"
               file="Source/Utils/AudioFileFilter.h"/>
         <FILE id="kWtP6J" name="Macros.h" compile="0" resource="0" file="Source/Utils/Macros.h"/>

@@ -17,7 +17,7 @@ using namespace Puritan::UI;
 //==============================================================================
 /**
 */
-class PuritanAudioProcessorEditor  : public juce::AudioProcessorEditor, public juce::FileBrowserListener
+class PuritanAudioProcessorEditor  : public juce::AudioProcessorEditor, public juce::FileBrowserListener, public juce::DragAndDropContainer
 {
 public:
     PuritanAudioProcessorEditor (PuritanAudioProcessor&);
@@ -32,7 +32,7 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
-
+    PURITAN_INLINE juce::FileBrowserComponent* getFileBrowser() { return &m_fileBrowser; }
 
 private:
     // This reference is provided as a quick way for your editor to

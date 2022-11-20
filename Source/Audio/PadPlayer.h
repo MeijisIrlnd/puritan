@@ -18,7 +18,7 @@ namespace Puritan::Audio
     {
     public: 
         PadPlayer();
-        void setSample(PadInfo* linked);
+        void setSample(const juce::File& toLoad);
         void prepareToPlay(int samplesPerBlockExpected, double sampleRate);
         void getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill);
         void releaseResources();
@@ -26,7 +26,7 @@ namespace Puritan::Audio
         void stop();
     private: 
         std::mutex m_mutex;
-        PadInfo* m_linkedInfo{ nullptr };
+        std::shared_ptr<PadInfo> m_linkedInfo{ nullptr };
         bool m_padPlaying{ false };
         std::uint64_t m_currentSample{ 0 };
     };

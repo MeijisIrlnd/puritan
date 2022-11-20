@@ -9,11 +9,11 @@
 */
 
 #include "Pad.h"
-
+#include <PluginEditor.h>
 namespace Puritan::UI
 {
-    Pad::Pad(const int midiNote) : m_gif(juce::MemoryBlock(BinaryData::pad_press_128_128_gif, BinaryData::pad_press_128_128_gifSize)),
-        m_midiNote(midiNote)
+    Pad::Pad(const int midiNote, const int index) : m_gif(juce::MemoryBlock(BinaryData::pad_press_128_128_gif, BinaryData::pad_press_128_128_gifSize)),
+        m_midiNote(midiNote), m_index(index)
     {
         m_nameDisplay.setJustificationType(juce::Justification::centred);
         addAndMakeVisible(&m_nameDisplay);
@@ -31,6 +31,23 @@ namespace Puritan::UI
     void Pad::gifPlaybackFinished()
     {
         m_gif.stop();
+    }
+
+    bool Pad::isInterestedInDragSource(PURITAN_UNUSED const SourceDetails& dragSourceDetails)
+    {
+        auto* editor = static_cast<PuritanAudioProcessorEditor*>(getParentComponent()->getParentComponent());
+        auto draggedFile = editor->getFileBrowser()->getHighlightedFile();
+        auto it = std::find(Utils::AudioFileFilter::extensions.begin(), Utils::AudioFileFilter::extensions.end(), draggedFile.getFileExtension());
+        return it != Utils::AudioFileFilter::extensions.end();
+    }
+
+    void Pad::itemDropped(PURITAN_UNUSED const SourceDetails& dragSourceDetails)
+    {
+        auto* editor = static_cast<PuritanAudioProcessorEditor*>(getParentComponent()->getParentComponent());
+        auto draggedFile = editor->getFileBrowser()->getHighlightedFile();
+        if (m_listener != nullptr) {
+            m_listener->fileDroppedOnPad(*this, draggedFile);
+        }
     }
 
     void Pad::mouseUp(PURITAN_UNUSED const juce::MouseEvent& ev)

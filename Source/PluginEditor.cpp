@@ -11,7 +11,7 @@
 
 //==============================================================================
 PuritanAudioProcessorEditor::PuritanAudioProcessorEditor (PuritanAudioProcessor& p)
-    : m_audioFileFilter(juce::String("Filter for audio files")), AudioProcessorEditor(&p), audioProcessor(p), m_fileBrowser(juce::FileBrowserComponent::FileChooserFlags::openMode | juce::FileBrowserComponent::FileChooserFlags::canSelectFiles, juce::File(), &m_audioFileFilter, nullptr)
+    : m_audioFileFilter(juce::String("Filter for audio files")), AudioProcessorEditor(&p), audioProcessor(p), m_fileBrowser(juce::FileBrowserComponent::FileChooserFlags::openMode | juce::FileBrowserComponent::FileChooserFlags::canSelectFiles | juce::FileBrowserComponent::FileChooserFlags::useTreeView, juce::File(), &m_audioFileFilter, nullptr)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.

@@ -511,6 +511,12 @@
     <ClCompile Include="..\..\Source\Audio\PadPlayer.cpp">
       <Filter>puritan\Source\Audio</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Types\PadInfo.cpp">
+      <Filter>puritan\Source\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Utils\AudioFileFilter.cpp">
+      <Filter>puritan\Source\Utils</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Utils\Utilities.cpp">
       <Filter>puritan\Source\Utils</Filter>
     </ClCompile>

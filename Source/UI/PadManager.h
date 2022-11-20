@@ -21,6 +21,7 @@ namespace Puritan::UI
         void resized() override;
 
         void onPadClicked(PURITAN_UNUSED const Pad& clickedPad) override;
+        void fileDroppedOnPad(const Pad& pad, const juce::File& f) override;
         PURITAN_INLINE Pad* at(int row, int column)
         {
             int index = (row * 4) + column;
