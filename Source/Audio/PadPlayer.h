@@ -24,6 +24,7 @@ namespace Puritan::Audio
         void releaseResources();
         void play();
         void stop();
+        PURITAN_INLINE std::shared_ptr<PadInfo> getInfo() { return m_linkedInfo; }
     private: 
         std::mutex m_mutex;
         std::shared_ptr<PadInfo> m_linkedInfo{ nullptr };

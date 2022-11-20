@@ -15,14 +15,18 @@ PuritanAudioProcessorEditor::PuritanAudioProcessorEditor (PuritanAudioProcessor&
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (1200, 800);
+    setSize (1200, 1600);
+    setLookAndFeel(&m_lf);
     addAndMakeVisible(&m_padManager);
+    m_fileBrowser.setLookAndFeel(&m_lf);
     addAndMakeVisible(&m_fileBrowser);
+
     m_fileBrowser.addListener(this);
 }
 
 PuritanAudioProcessorEditor::~PuritanAudioProcessorEditor()
 {
+    setLookAndFeel(nullptr);
 }
 
 void PuritanAudioProcessorEditor::selectionChanged()
@@ -59,6 +63,6 @@ void PuritanAudioProcessorEditor::paint (juce::Graphics& g)
 void PuritanAudioProcessorEditor::resized()
 {
     m_fileBrowser.setBounds(0, 0, 400, getHeight());
-    m_padManager.setBounds(400, 0, getWidth() - 400, getHeight());
+    m_padManager.setBounds(400, 10, getWidth() - 400, getWidth() - 400);
     //m_testGif.setBounds(0, 0, getWidth(), getHeight());
 }

@@ -11,6 +11,7 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 #include <UI/PadManager.h>
+#include <UI/LF.h>
 #include <Utils/AudioFileFilter.h>
 using namespace Puritan::UI;
 
@@ -38,6 +39,7 @@ private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     PuritanAudioProcessor& audioProcessor;
+    LF m_lf;
     PadManager m_padManager;
     juce::FileBrowserComponent m_fileBrowser;
     const Puritan::Utils::AudioFileFilter m_audioFileFilter;

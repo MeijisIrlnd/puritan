@@ -24,6 +24,7 @@ namespace Puritan::Audio
     {
         std::scoped_lock<std::mutex> sl(m_mutex);
         stop();
+        m_buffer.clear();
         Puritan::Utils::loadWithResample(*PuritanAudioProcessor::getInstance()->getFormatManager(), toLoad, m_sampleRate, m_buffer);
     }
 
@@ -58,6 +59,7 @@ namespace Puritan::Audio
         auto* write = bufferToFill.buffer->getArrayOfWritePointers();
         for (auto sample = 0; sample < bufferToFill.numSamples; sample++)
         {
+            PURITAN_UNUSED auto n = m_buffer.getNumSamples();
             if (m_sampleCounter >= m_buffer.getNumSamples()) {
                 m_playing.store(false);
                 return;

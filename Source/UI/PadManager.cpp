@@ -51,9 +51,10 @@ namespace Puritan::UI
         PuritanAudioProcessor::getInstance()->triggerPad(index);
     }
 
-    void PadManager::fileDroppedOnPad(const Pad& pad, const juce::File& f)
+    void PadManager::fileDroppedOnPad(Pad& pad, const juce::File& f)
     {
         auto index = pad.getIndex();
         PuritanAudioProcessor::getInstance()->loadToPad(index, f);
+        pad.set(PuritanAudioProcessor::getInstance()->getPadInfo(index));
     }
 }

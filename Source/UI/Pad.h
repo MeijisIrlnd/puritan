@@ -23,7 +23,7 @@ namespace Puritan::UI
         {
             virtual ~Listener() { }
             virtual void onPadClicked(const Pad& clickedPad) = 0;
-            virtual void fileDroppedOnPad(const Pad& pad, const juce::File& f) = 0;
+            virtual void fileDroppedOnPad(Pad& pad, const juce::File& f) = 0;
         };
 
         Pad(const int midiNote, const int index);

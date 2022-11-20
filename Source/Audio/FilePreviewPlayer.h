@@ -29,7 +29,7 @@ namespace Puritan::Audio
     private: 
         std::mutex m_mutex;
         std::atomic_bool m_playing{ false };
-        std::uint16_t m_sampleCounter{ 0 };
+        std::uint64_t m_sampleCounter{ 0 };
         juce::AudioBuffer<float> m_buffer;
         double m_sampleRate{ 0 };
 

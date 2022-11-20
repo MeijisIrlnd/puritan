@@ -60,6 +60,7 @@ public:
     void triggerPad(int padIndex);
     PURITAN_INLINE juce::AudioFormatManager* getFormatManager() { return &m_formatManager; }
     PURITAN_INLINE Puritan::Audio::FilePreviewPlayer* getPreviewPlayer() { return &m_previewPlayer; }
+    PURITAN_INLINE std::shared_ptr<Puritan::PadInfo> getPadInfo(const int index) { return m_padPlayers[index]->getInfo(); }
     PURITAN_INLINE double getSampleRate() const { return m_sampleRate; }
 private:
     static std::mutex m_mutex;

@@ -14,6 +14,7 @@ namespace Puritan
 {
     PadInfo::PadInfo(const juce::File& f) : path(f.getFullPathName().toStdString())
     {
+        name = f.getFileNameWithoutExtension().toStdString();
         auto sr = PuritanAudioProcessor::getInstance()->getSampleRate();
         auto* formatManager = PuritanAudioProcessor::getInstance()->getFormatManager();
         Utils::loadWithResample(*formatManager, f, sr, audioData);

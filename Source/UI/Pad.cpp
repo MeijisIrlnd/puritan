@@ -15,6 +15,7 @@ namespace Puritan::UI
     Pad::Pad(const int midiNote, const int index) : m_gif(juce::MemoryBlock(BinaryData::pad_press_128_128_gif, BinaryData::pad_press_128_128_gifSize)),
         m_midiNote(midiNote), m_index(index)
     {
+        m_nameDisplay.setText("Wagwan", juce::dontSendNotification);
         m_nameDisplay.setJustificationType(juce::Justification::centred);
         addAndMakeVisible(&m_nameDisplay);
         m_gif.setInterceptsMouseClicks(false, false);
@@ -65,8 +66,9 @@ namespace Puritan::UI
 
     void Pad::resized()
     {
-        m_nameDisplay.setBounds(0, getHeight() - getHeight() / 12, getWidth(), getHeight() / 12);
-        m_gif.setBounds(0, 0, getWidth(), getHeight());
+        m_gif.setBounds(getWidth() / 12, 0, getWidth() - (getWidth() / 6), getHeight() - (getHeight() / 6));
+        m_nameDisplay.setBounds(0, getHeight() - getHeight() / 6, getWidth(), getHeight() / 6);
+        m_nameDisplay.setFont(static_cast<float>(m_nameDisplay.getHeight()));
     }
 
     void Pad::set(std::shared_ptr<PadInfo> padInfo)
