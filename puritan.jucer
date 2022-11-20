@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="l6Zd2T" name="puritan" projectType="audioplug" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
+              cppLanguageStandard="20">
+  <MAINGROUP id="yCBoiM" name="puritan">
+    <GROUP id="{1D514FE3-D354-B723-5B62-5F2C7A74F525}" name="Resources">
+      <GROUP id="{33B04EB1-68B3-38AF-4B13-4A5CDAAB5881}" name="Animations">
+        <FILE id="jaySfo" name="pad_press.gif" compile="0" resource="1" file="Resources/Animations/pad_press.gif"/>
+        <FILE id="LhmzsN" name="pad_press_128_128.gif" compile="0" resource="1"
+              file="Resources/Animations/pad_press_128_128.gif"/>
+        <FILE id="JURjjj" name="pad_press_512_512.gif" compile="0" resource="1"
+              file="Resources/Animations/pad_press_512_512.gif"/>
+      </GROUP>
+      <GROUP id="{08580DDF-D9ED-2586-EC44-5FFEA9AD37C1}" name="Fonts">
+        <FILE id="C1bBWO" name="PixelTandysoft-0rJG.ttf" compile="0" resource="1"
+              file="Resources/Fonts/PixelTandysoft-0rJG.ttf"/>
+      </GROUP>
+      <GROUP id="{1AEDB050-7F85-C9AA-D762-B314B0A984D3}" name="Sprites">
+        <GROUP id="{48079831-E12A-BF0F-2CB5-6CFF49055298}" name="Pad">
+          <FILE id="flsY9K" name="puritan_pad.png" compile="0" resource="1" file="Resources/Sprites/Pad/puritan_pad.png"/>
+          <FILE id="YZt6Nr" name="puritan_pad32_32.png" compile="0" resource="1"
+                file="Resources/Sprites/Pad/puritan_pad32_32.png"/>
+        </GROUP>
+      </GROUP>
+      <GROUP id="{98BA9269-73DE-0E55-AF23-3C99A3276F40}" name="Test">
+        <FILE id="Zvjfbv" name="drinkLove.gif" compile="0" resource="1" file="Resources/Test/drinkLove.gif"/>
+      </GROUP>
+    </GROUP>
+    <GROUP id="{A8C6BFE7-8019-927A-8B04-B69FEE56D504}" name="Source">
+      <GROUP id="{4CC71CE0-86C0-CC8E-1DD2-EB128D5A9616}" name="Audio">
+        <FILE id="XPEkq5" name="PadPlayer.cpp" compile="1" resource="0" file="Source/Audio/PadPlayer.cpp"/>
+        <FILE id="CszJdi" name="PadPlayer.h" compile="0" resource="0" file="Source/Audio/PadPlayer.h"/>
+      </GROUP>
+      <GROUP id="{3DBC5282-C9BF-5FA6-4E67-BCB534A35BFB}" name="Types">
+        <FILE id="DNa0mg" name="PadInfo.h" compile="0" resource="0" file="Source/Types/PadInfo.h"/>
+      </GROUP>
+      <GROUP id="{CB3C3754-F30A-82EE-0E09-16E734CAEBD8}" name="Utils">
+        <FILE id="kWtP6J" name="Macros.h" compile="0" resource="0" file="Source/Utils/Macros.h"/>
+        <FILE id="GT512F" name="PuritanMath.h" compile="0" resource="0" file="Source/Utils/PuritanMath.h"/>
+      </GROUP>
+      <GROUP id="{6B2FB763-888B-6C8C-5AC9-F8A217149E76}" name="UI">
+        <GROUP id="{6CB0523D-4E3C-219A-1064-E461C591E585}" name="Behaviours">
+          <FILE id="a5ENVc" name="AnimatedComponent.h" compile="0" resource="0"
+                file="Source/UI/Behaviours/AnimatedComponent.h"/>
+        </GROUP>
+        <FILE id="OhRhL9" name="LF.cpp" compile="1" resource="0" file="Source/UI/LF.cpp"/>
+        <FILE id="UgWyp4" name="LF.h" compile="0" resource="0" file="Source/UI/LF.h"/>
+        <FILE id="qw9OdL" name="Pad.cpp" compile="1" resource="0" file="Source/UI/Pad.cpp"/>
+        <FILE id="VS6gc4" name="Pad.h" compile="0" resource="0" file="Source/UI/Pad.h"/>
+        <FILE id="GipK50" name="PadManager.cpp" compile="1" resource="0" file="Source/UI/PadManager.cpp"/>
+        <FILE id="WilPW6" name="PadManager.h" compile="0" resource="0" file="Source/UI/PadManager.h"/>
+      </GROUP>
+      <FILE id="FKr8YX" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="zBWgJ3" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="KM63Fo" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="bb4Vtj" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
+  <EXPORTFORMATS>
+    <VS2022 targetFolder="Builds/VisualStudio2022">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="puritan" headerPath="${PROJECT_DIR}../../../../Source"
+                       warningsAreErrors="1"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="puritan" headerPath="${PROJECT_DIR}../../../../Source"
+                       warningsAreErrors="0"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../../../JUCE/modules"/>
+        <MODULEPATH id="juce_jif" path="../../../../../Program Files/JUCE/UserModules"/>
+      </MODULEPATHS>
+    </VS2022>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_jif" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+</JUCERPROJECT>
