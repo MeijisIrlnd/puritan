@@ -10,6 +10,7 @@
 
 #include <mutex>
 #include <JuceHeader.h>
+#include <Audio/FilePreviewPlayer.h>
 #include <Audio/PadPlayer.h>
 
 //==============================================================================
@@ -55,12 +56,15 @@ public:
     //==============================================================================
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
-
+    void triggerPad(int padIndex);
+    PURITAN_INLINE juce::AudioFormatManager* getFormatManager() { return &m_formatManager; }
+    PURITAN_INLINE Puritan::Audio::FilePreviewPlayer* getPreviewPlayer() { return &m_previewPlayer; }
 private:
     static std::mutex m_mutex;
     static PuritanAudioProcessor* m_instance;
-    
-    std::vector<std::unique_ptr<Puritan::PadInfo> > m_pads;
+    juce::AudioFormatManager m_formatManager;
+    //std::vector<std::unique_ptr<Puritan::PadInfo> > m_pads;
+    Puritan::Audio::FilePreviewPlayer m_previewPlayer;
     std::vector<std::unique_ptr<Puritan::Audio::PadPlayer> > m_padPlayers;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PuritanAudioProcessor)

@@ -26,6 +26,7 @@ PuritanAudioProcessor::PuritanAudioProcessor()
                        )
 #endif
 {
+    m_formatManager.registerBasicFormats();
     for (auto i = 0; i < 16; i++) {
         m_padPlayers.emplace_back(new Puritan::Audio::PadPlayer());
     }
@@ -112,6 +113,7 @@ void PuritanAudioProcessor::changeProgramName (PURITAN_UNUSED int index, PURITAN
 //==============================================================================
 void PuritanAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
+    m_previewPlayer.prepareToPlay(samplesPerBlock, sampleRate);
     for (auto& item : m_padPlayers)
     {
         item->prepareToPlay(samplesPerBlock, sampleRate);
@@ -121,6 +123,7 @@ void PuritanAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBloc
 
 void PuritanAudioProcessor::releaseResources()
 {
+    m_previewPlayer.releaseResources();
     for (auto& item : m_padPlayers)
     {
         item->releaseResources();
@@ -156,6 +159,8 @@ bool PuritanAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) 
 void PuritanAudioProcessor::processBlock (PURITAN_UNUSED juce::AudioBuffer<float>& buffer, PURITAN_UNUSED juce::MidiBuffer& midiMessages)
 {
     juce::AudioSourceChannelInfo bufferToFill(buffer);
+    bufferToFill.clearActiveBufferRegion();
+    m_previewPlayer.getNextAudioBlock(bufferToFill);
     for (auto i = 0; i < m_padPlayers.size(); i++)
     {
         m_padPlayers[i]->getNextAudioBlock(bufferToFill);
@@ -180,6 +185,11 @@ void PuritanAudioProcessor::getStateInformation (PURITAN_UNUSED juce::MemoryBloc
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
+}
+
+void PuritanAudioProcessor::triggerPad(int padIndex)
+{
+    m_padPlayers[padIndex]->play();
 }
 
 void PuritanAudioProcessor::setStateInformation (PURITAN_UNUSED const void* data, PURITAN_UNUSED int sizeInBytes)

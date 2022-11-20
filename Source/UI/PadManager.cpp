@@ -44,9 +44,10 @@ namespace Puritan::UI
         }
     }
 
+
     void PadManager::onPadClicked(PURITAN_UNUSED const Pad& clickedPad)
     {
-        PURITAN_UNUSED const int midiNote = clickedPad.getMidiNote();
+       // auto* p = PuritanAudioProcessor::getInstance();
         // So this should just schedule a midi note.. 
     }
 }

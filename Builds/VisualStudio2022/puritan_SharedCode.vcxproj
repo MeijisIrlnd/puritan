@@ -138,7 +138,9 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Audio\FilePreviewPlayer.cpp"/>
     <ClCompile Include="..\..\Source\Audio\PadPlayer.cpp"/>
+    <ClCompile Include="..\..\Source\Utils\Utilities.cpp"/>
     <ClCompile Include="..\..\Source\UI\LF.cpp"/>
     <ClCompile Include="..\..\Source\UI\Pad.cpp"/>
     <ClCompile Include="..\..\Source\UI\PadManager.cpp"/>
@@ -2211,10 +2213,13 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_gui_extra.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Audio\FilePreviewPlayer.h"/>
     <ClInclude Include="..\..\Source\Audio\PadPlayer.h"/>
     <ClInclude Include="..\..\Source\Types\PadInfo.h"/>
+    <ClInclude Include="..\..\Source\Utils\AudioFileFilter.h"/>
     <ClInclude Include="..\..\Source\Utils\Macros.h"/>
     <ClInclude Include="..\..\Source\Utils\PuritanMath.h"/>
+    <ClInclude Include="..\..\Source\Utils\Utilities.h"/>
     <ClInclude Include="..\..\Source\UI\Behaviours\AnimatedComponent.h"/>
     <ClInclude Include="..\..\Source\UI\LF.h"/>
     <ClInclude Include="..\..\Source\UI\Pad.h"/>

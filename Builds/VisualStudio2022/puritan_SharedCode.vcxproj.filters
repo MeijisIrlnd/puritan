@@ -505,8 +505,14 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Audio\FilePreviewPlayer.cpp">
+      <Filter>puritan\Source\Audio</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Audio\PadPlayer.cpp">
       <Filter>puritan\Source\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Utils\Utilities.cpp">
+      <Filter>puritan\Source\Utils</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\UI\LF.cpp">
       <Filter>puritan\Source\UI</Filter>
@@ -2745,16 +2751,25 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Audio\FilePreviewPlayer.h">
+      <Filter>puritan\Source\Audio</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Audio\PadPlayer.h">
       <Filter>puritan\Source\Audio</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Types\PadInfo.h">
       <Filter>puritan\Source\Types</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Utils\AudioFileFilter.h">
+      <Filter>puritan\Source\Utils</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Utils\Macros.h">
       <Filter>puritan\Source\Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Utils\PuritanMath.h">
+      <Filter>puritan\Source\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Utils\Utilities.h">
       <Filter>puritan\Source\Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\UI\Behaviours\AnimatedComponent.h">

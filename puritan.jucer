@@ -29,6 +29,10 @@
     </GROUP>
     <GROUP id="{A8C6BFE7-8019-927A-8B04-B69FEE56D504}" name="Source">
       <GROUP id="{4CC71CE0-86C0-CC8E-1DD2-EB128D5A9616}" name="Audio">
+        <FILE id="iDcq0n" name="FilePreviewPlayer.cpp" compile="1" resource="0"
+              file="Source/Audio/FilePreviewPlayer.cpp"/>
+        <FILE id="r6DJAC" name="FilePreviewPlayer.h" compile="0" resource="0"
+              file="Source/Audio/FilePreviewPlayer.h"/>
         <FILE id="XPEkq5" name="PadPlayer.cpp" compile="1" resource="0" file="Source/Audio/PadPlayer.cpp"/>
         <FILE id="CszJdi" name="PadPlayer.h" compile="0" resource="0" file="Source/Audio/PadPlayer.h"/>
       </GROUP>
@@ -36,8 +40,12 @@
         <FILE id="DNa0mg" name="PadInfo.h" compile="0" resource="0" file="Source/Types/PadInfo.h"/>
       </GROUP>
       <GROUP id="{CB3C3754-F30A-82EE-0E09-16E734CAEBD8}" name="Utils">
+        <FILE id="GJZx6H" name="AudioFileFilter.h" compile="0" resource="0"
+              file="Source/Utils/AudioFileFilter.h"/>
         <FILE id="kWtP6J" name="Macros.h" compile="0" resource="0" file="Source/Utils/Macros.h"/>
         <FILE id="GT512F" name="PuritanMath.h" compile="0" resource="0" file="Source/Utils/PuritanMath.h"/>
+        <FILE id="nDfijA" name="Utilities.cpp" compile="1" resource="0" file="Source/Utils/Utilities.cpp"/>
+        <FILE id="JRaS1h" name="Utilities.h" compile="0" resource="0" file="Source/Utils/Utilities.h"/>
       </GROUP>
       <GROUP id="{6B2FB763-888B-6C8C-5AC9-F8A217149E76}" name="UI">
         <GROUP id="{6CB0523D-4E3C-219A-1064-E461C591E585}" name="Behaviours">
