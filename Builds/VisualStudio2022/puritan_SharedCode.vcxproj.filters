@@ -526,6 +526,9 @@
     <ClCompile Include="..\..\Source\UI\Pad.cpp">
       <Filter>puritan\Source\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\UI\PadControls.cpp">
+      <Filter>puritan\Source\UI</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\UI\PadManager.cpp">
       <Filter>puritan\Source\UI</Filter>
     </ClCompile>
@@ -2785,6 +2788,9 @@
       <Filter>puritan\Source\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\UI\Pad.h">
+      <Filter>puritan\Source\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UI\PadControls.h">
       <Filter>puritan\Source\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\UI\PadManager.h">

@@ -12,6 +12,7 @@
 #include "PluginProcessor.h"
 #include <UI/PadManager.h>
 #include <UI/LF.h>
+#include <UI/PadControls.h>
 #include <Utils/AudioFileFilter.h>
 using namespace Puritan::UI;
 
@@ -41,6 +42,7 @@ private:
     PuritanAudioProcessor& audioProcessor;
     LF m_lf;
     PadManager m_padManager;
+    PadControls m_padControls;
     juce::FileBrowserComponent m_fileBrowser;
     const Puritan::Utils::AudioFileFilter m_audioFileFilter;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PuritanAudioProcessorEditor)

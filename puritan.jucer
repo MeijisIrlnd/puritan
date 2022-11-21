@@ -59,6 +59,8 @@
         <FILE id="UgWyp4" name="LF.h" compile="0" resource="0" file="Source/UI/LF.h"/>
         <FILE id="qw9OdL" name="Pad.cpp" compile="1" resource="0" file="Source/UI/Pad.cpp"/>
         <FILE id="VS6gc4" name="Pad.h" compile="0" resource="0" file="Source/UI/Pad.h"/>
+        <FILE id="O6qOzH" name="PadControls.cpp" compile="1" resource="0" file="Source/UI/PadControls.cpp"/>
+        <FILE id="p0rOKV" name="PadControls.h" compile="0" resource="0" file="Source/UI/PadControls.h"/>
         <FILE id="GipK50" name="PadManager.cpp" compile="1" resource="0" file="Source/UI/PadManager.cpp"/>
         <FILE id="WilPW6" name="PadManager.h" compile="0" resource="0" file="Source/UI/PadManager.h"/>
       </GROUP>

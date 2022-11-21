@@ -12,7 +12,7 @@
 
 namespace Puritan::Audio
 {
-    PadPlayer::PadPlayer()
+    PadPlayer::PadPlayer(const int index) : m_index(index)
     {
     }
 
@@ -20,6 +20,9 @@ namespace Puritan::Audio
     {
         std::scoped_lock<std::mutex> sl(m_mutex);
         m_linkedInfo.reset(new PadInfo(toLoad));
+        if (m_listener != nullptr) {
+            m_listener->onSampleChanged(m_index, m_linkedInfo);
+        }
     }
 
     void PadPlayer::prepareToPlay(PURITAN_UNUSED int samplesPerBlockExpected, PURITAN_UNUSED double sampleRate)

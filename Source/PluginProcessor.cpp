@@ -28,7 +28,7 @@ PuritanAudioProcessor::PuritanAudioProcessor()
 {
     m_formatManager.registerBasicFormats();
     for (auto i = 0; i < 16; i++) {
-        m_padPlayers.emplace_back(new Puritan::Audio::PadPlayer());
+        m_padPlayers.emplace_back(new Puritan::Audio::PadPlayer(i));
     }
 }
 

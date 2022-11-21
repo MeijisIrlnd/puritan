@@ -145,6 +145,7 @@
     <ClCompile Include="..\..\Source\Utils\Utilities.cpp"/>
     <ClCompile Include="..\..\Source\UI\LF.cpp"/>
     <ClCompile Include="..\..\Source\UI\Pad.cpp"/>
+    <ClCompile Include="..\..\Source\UI\PadControls.cpp"/>
     <ClCompile Include="..\..\Source\UI\PadManager.cpp"/>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp"/>
     <ClCompile Include="..\..\Source\PluginEditor.cpp"/>
@@ -2225,6 +2226,7 @@
     <ClInclude Include="..\..\Source\UI\Behaviours\AnimatedComponent.h"/>
     <ClInclude Include="..\..\Source\UI\LF.h"/>
     <ClInclude Include="..\..\Source\UI\Pad.h"/>
+    <ClInclude Include="..\..\Source\UI\PadControls.h"/>
     <ClInclude Include="..\..\Source\UI\PadManager.h"/>
     <ClInclude Include="..\..\Source\PluginProcessor.h"/>
     <ClInclude Include="..\..\Source\PluginEditor.h"/>
