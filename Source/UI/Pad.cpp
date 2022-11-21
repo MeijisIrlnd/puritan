@@ -15,7 +15,6 @@ namespace Puritan::UI
     Pad::Pad(const int midiNote, const int index) : m_gif(juce::MemoryBlock(BinaryData::pad_press_128_128_gif, BinaryData::pad_press_128_128_gifSize)),
         m_midiNote(midiNote), m_index(index)
     {
-        m_nameDisplay.setText("Wagwan", juce::dontSendNotification);
         m_nameDisplay.setJustificationType(juce::Justification::centred);
         addAndMakeVisible(&m_nameDisplay);
         m_gif.setInterceptsMouseClicks(false, false);

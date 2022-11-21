@@ -10,6 +10,7 @@
 
 #include "PadManager.h"
 #include <PluginProcessor.h>
+#include <PluginEditor.h>
 namespace Puritan::UI
 {
     PadManager::PadManager()
@@ -49,6 +50,7 @@ namespace Puritan::UI
     {
         auto index = clickedPad.getIndex();
         PuritanAudioProcessor::getInstance()->triggerPad(index);
+        dynamic_cast<PuritanAudioProcessorEditor*>(getParentComponent())->getPadControls()->setSelectedPad(index);
     }
 
     void PadManager::fileDroppedOnPad(Pad& pad, const juce::File& f)

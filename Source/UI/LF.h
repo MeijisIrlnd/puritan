@@ -78,6 +78,7 @@ namespace Puritan::UI
             juce::TextEditor* filenameBox,
             juce::Button* goUpButton) override;
 
+        PURITAN_INLINE static juce::Font getFont(float height) { return m_font.withHeight(height); }
         PURITAN_INLINE juce::Font getLabelFont(juce::Label& l) override {
             return m_font.withHeight(static_cast<float>(l.getHeight() / 1.5));
         }
