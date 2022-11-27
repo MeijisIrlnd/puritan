@@ -20,7 +20,11 @@ namespace Puritan::UI
             m_pads.emplace_back(new Pad(i, i));
             addAndMakeVisible(m_pads.back().get());
             m_pads.back()->addListener(this);
+            m_padControls.emplace_back(new PadControls(i));
+            addAndMakeVisible(m_padControls.back().get());
+            m_padControls.back()->setVisible(false);
         }
+        m_padControls.back()->setVisible(true);
     }
 
     PadManager::~PadManager()
@@ -34,14 +38,20 @@ namespace Puritan::UI
     void PadManager::resized()
     {
         // Ok, so for now lets fit em all in normally.. 
-        auto w = getWidth() / 4;
-        auto h = getHeight() / 4;
+        // 2/3 width height is for pads, remaining 3rd is pad controls...
+        auto padControlsWidth = getWidth();
+        auto padControlsHeight = getWidth();
+        auto w = padControlsWidth / 4;
+        auto h = padControlsHeight / 4;
         auto yMultiplier = -1;
         for (auto i = 0; i < m_pads.size(); i++) {
             yMultiplier = i % 4 == 0 ? ++yMultiplier : yMultiplier;
             auto x = w * (i % 4);
             auto y = h * yMultiplier;
             m_pads[i]->setBounds(x, y, w, h);
+        }
+        for (auto i = 0; i < m_padControls.size(); i++) {
+            m_padControls[i]->setBounds(0, padControlsHeight, getWidth(), getHeight() - padControlsHeight);
         }
     }
 
@@ -50,7 +60,10 @@ namespace Puritan::UI
     {
         auto index = clickedPad.getIndex();
         PuritanAudioProcessor::getInstance()->triggerPad(index);
-        dynamic_cast<PuritanAudioProcessorEditor*>(getParentComponent())->getPadControls()->setSelectedPad(index);
+        for (auto i = 0; i < m_padControls.size(); i++) {
+            m_padControls[i]->setVisible(false);
+        }
+        m_padControls[index]->setVisible(true);
     }
 
     void PadManager::fileDroppedOnPad(Pad& pad, const juce::File& f)

@@ -17,6 +17,7 @@ namespace Puritan::UI
 
     LF::LF()
     {
+        m_rThumb = juce::ImageCache::getFromMemory(BinaryData::RotaryHandle_png, BinaryData::RotaryHandle_pngSize);
         //5E315A,8B3F5D,B96155,F3A65E,FFE577,CFFE70,8FDE5E,3CA270,3D6F70,323D4F,322946,473C78,4A5BAB,4DA6FF,66FFE3,FFFFEB,C3C2D0,7F7E8E,616070,43434F,282735,3E2346,572A4B,964252,E36856,FFB470,FE9166,EA564A,AF305B,74275D,422544,59265E,80366B,BE4882,FE6B97,FFB5B6
         setDefaultSansSerifTypeface(m_font.getTypefacePtr());
         m_primaryBackgroundColour = getPaletteColour(PALETTE_COLOUR::CREAM);
@@ -135,5 +136,35 @@ namespace Puritan::UI
 
         if (auto* listAsComp = dynamic_cast<Component*> (fileListComponent))
             listAsComp->setBounds(b.reduced(0, 10));
+    }
+
+    void LF::drawRotarySlider(juce::Graphics& g, int x, int y, int width, int height, float sliderPos, float rotaryStartAngle, float rotaryEndAngle, juce::Slider& slider)
+    {
+        using namespace juce;
+        auto outline = slider.findColour(Slider::rotarySliderOutlineColourId);
+        auto fill = slider.findColour(Slider::rotarySliderFillColourId);
+
+        auto bounds = Rectangle<int>(x, y, width, height).toFloat().reduced(10);
+
+        auto radius = jmin(bounds.getWidth(), bounds.getHeight()) / 2.0f;
+        PURITAN_UNUSED auto toAngle = rotaryStartAngle + sliderPos * (rotaryEndAngle - rotaryStartAngle);
+        auto lineW = jmin(8.0f, radius * 0.5f);
+        auto arcRadius = radius - lineW * 0.5f;
+
+        Path backgroundArc;
+        backgroundArc.addCentredArc(bounds.getCentreX(),
+            bounds.getCentreY(),
+            arcRadius,
+            arcRadius,
+            0.0f,
+            rotaryStartAngle,
+            rotaryEndAngle,
+            true);
+
+        g.setColour(outline);
+        g.strokePath(backgroundArc, PathStrokeType(lineW, PathStrokeType::curved, PathStrokeType::rounded));
+        juce::AffineTransform rotation = juce::AffineTransform::rotation(toAngle, width / 2.0f, height / 2.0f);
+        m_rThumb = m_rThumb.rescaled(width, height, juce::Graphics::ResamplingQuality::highResamplingQuality);
+        g.drawImageTransformed(m_rThumb, rotation);
     }
 }

@@ -9,6 +9,7 @@
 */
 
 #pragma once
+#include <inttypes.h>
 #include <JuceHeader.h>
 #include <Utils/Macros.h>
 namespace Puritan::UI
@@ -16,11 +17,7 @@ namespace Puritan::UI
     class LF : public juce::LookAndFeel_V4
     {
     public:
-#ifdef _MSC_VER
-#pragma warning(push)
-#pragma warning(disable:4369)
-#endif
-        enum class PALETTE_COLOUR
+        enum class PALETTE_COLOUR : std::uint64_t
         {
             PURPLE_A = 0xFF5E315A,
             PURPLE_B = 0xFF8B3F5D,
@@ -59,9 +56,7 @@ namespace Puritan::UI
             PINK_C = 0xFFFE6B97,
             SALMON = 0xFFFFB5B6
         };
-#ifdef _MSC_VER
-#pragma warning(pop)
-#endif
+
         LF();
         ~LF() override;
         void drawFileBrowserRow(juce::Graphics& g, int width, int height,
@@ -77,6 +72,10 @@ namespace Puritan::UI
             juce::ComboBox* currentPathBox,
             juce::TextEditor* filenameBox,
             juce::Button* goUpButton) override;
+
+        void drawRotarySlider(juce::Graphics&, int x, int y, int width, int height,
+            float sliderPosProportional, float rotaryStartAngle,
+            float rotaryEndAngle, juce::Slider&) override;
 
         PURITAN_INLINE static juce::Font getFont(float height) { return m_font.withHeight(height); }
         PURITAN_INLINE juce::Font getLabelFont(juce::Label& l) override {
@@ -98,6 +97,7 @@ namespace Puritan::UI
     private: 
         static juce::Font m_font;
         static std::unordered_map<PALETTE_COLOUR, juce::Colour> m_palette;
+        juce::Image m_rThumb;
         juce::Colour m_primaryBackgroundColour, m_primaryHighlightColour, m_primaryTextColour;
     };
 }

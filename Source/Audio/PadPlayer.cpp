@@ -37,7 +37,7 @@ namespace Puritan::Audio
         auto* write = bufferToFill.buffer->getArrayOfWritePointers();
         for (auto sample = 0; sample < bufferToFill.numSamples; sample++)
         {
-            if (m_currentSample >= m_linkedInfo->audioData.getNumSamples()) return;
+            if (m_currentSample >= m_linkedInfo->audioData.getNumSamples() * m_normalisedEnd) return;
             for (auto channel = 0; channel < bufferToFill.buffer->getNumChannels(); channel++)
             {
                 write[channel][sample] += read[channel][m_currentSample];
@@ -54,6 +54,7 @@ namespace Puritan::Audio
     {
         m_currentSample = 0;
         if (m_linkedInfo == nullptr) return;
+        m_currentSample = static_cast<std::uint64_t>(m_normalisedStart * m_linkedInfo->audioData.getNumSamples());
         m_padPlaying = true;
     }
 

@@ -23,13 +23,17 @@ PuritanAudioProcessor::PuritanAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ),
+#else 
+    :
 #endif
+m_tree(*this, nullptr, { "Params" }, createParameterLayout())
 {
     m_formatManager.registerBasicFormats();
     for (auto i = 0; i < 16; i++) {
         m_padPlayers.emplace_back(new Puritan::Audio::PadPlayer(i));
     }
+    registerParamListeners();
 }
 
 PuritanAudioProcessor::~PuritanAudioProcessor()
@@ -196,6 +200,39 @@ void PuritanAudioProcessor::loadToPad(int padIndex, const juce::File& toLoad)
 void PuritanAudioProcessor::triggerPad(int padIndex)
 {
     m_padPlayers[padIndex]->play();
+}
+
+void PuritanAudioProcessor::parameterChanged(const juce::String& parameterID, float newValue)
+{
+    if (parameterID.contains("Pad"))
+    {
+        int padNum = std::stoi(parameterID.substring(juce::String("Pad").length(), parameterID.indexOf("_")).toStdString());
+        auto paramName = parameterID.substring(parameterID.indexOf("_") + 1);
+        if (paramName == "StartTime") { m_padPlayers[padNum]->setStart(static_cast<double>(newValue)); }
+        else if (paramName == "EndTime") { m_padPlayers[padNum]->setEnd(static_cast<double>(newValue)); }
+    }
+}
+
+juce::AudioProcessorValueTreeState::ParameterLayout PuritanAudioProcessor::createParameterLayout()
+{
+    juce::AudioProcessorValueTreeState::ParameterLayout layout;
+    for (auto i = 0; i < 16; i++)
+    {
+        std::string padName = fmt::format("Pad{}", i);
+        layout.add(std::make_unique<juce::AudioParameterFloat>(fmt::format("{}_StartTime", padName), fmt::format("{}_StartTime", padName), juce::NormalisableRange<float>(0, 1, 0.001f), 0.0f));
+        layout.add(std::make_unique<juce::AudioParameterFloat>(fmt::format("{}_EndTime", padName), fmt::format("{}_EndTime", padName), juce::NormalisableRange<float>(0, 1, 0.001f), 1.0f));
+    }
+    return layout;
+}
+
+void PuritanAudioProcessor::registerParamListeners()
+{
+    for (auto i = 0; i < 16; i++)
+    {
+        std::string padName = fmt::format("Pad{}", i);
+        m_tree.addParameterListener(fmt::format("{}_StartTime", padName), this);
+        m_tree.addParameterListener(fmt::format("{}_EndTime", padName), this);
+    }
 }
 
 void PuritanAudioProcessor::setStateInformation (PURITAN_UNUSED const void* data, PURITAN_UNUSED int sizeInBytes)

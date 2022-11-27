@@ -13,15 +13,17 @@
 #include <UI/LF.h>
 namespace Puritan::UI
 {
-    PadControls::PadControls() : m_thumbnailCache(5), m_thumbnail(512, *PuritanAudioProcessor::getInstance()->getFormatManager(), m_thumbnailCache)
+    PadControls::PadControls(const int index) : m_index(index),
+        m_keyRange(m_index, m_index), m_waveformDisplay(index)
     {
         m_nameReadout.setJustificationType(juce::Justification::centred);
         addAndMakeVisible(&m_nameReadout);
-        m_thumbnail.addChangeListener(this);
-        for (auto& player : *PuritanAudioProcessor::getInstance()->getPadPlayers())
-        {
-            player->addListener(this);
-        }
+        m_panSlider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+        m_panSlider.setRange(0, 1, 0.01);
+        m_panSlider.setTextBoxStyle(juce::Slider::NoTextBox, false, 0, 0);
+        addAndMakeVisible(&m_panSlider);
+        addAndMakeVisible(&m_waveformDisplay);
+        PuritanAudioProcessor::getInstance()->getPadPlayers()->at(m_index)->addListener(this);
     }
 
     PadControls::~PadControls()
@@ -32,61 +34,35 @@ namespace Puritan::UI
         }
     }
 
-    void PadControls::changeListenerCallback(PURITAN_UNUSED juce::ChangeBroadcaster* source)
+    void PadControls::startTimeChanged(double normalisedPos)
     {
-        repaint();
+        PuritanAudioProcessor::getInstance()->getPadPlayers()->at(m_index)->setStart(normalisedPos);
     }
 
-    void PadControls::setSelectedPad(const int newPadIndex)
+    void PadControls::endTimeChanged(double normalisedPos)
     {
-        m_selectedPadIndex = newPadIndex;
-        m_linkedPadInfo = PuritanAudioProcessor::getInstance()->getPadInfo(newPadIndex);
-        if (m_linkedPadInfo.get() != nullptr) {
-            m_nameReadout.setText(m_linkedPadInfo->name, juce::dontSendNotification);
-            m_thumbnail.setSource(new juce::FileInputSource(juce::File(m_linkedPadInfo->path)));
-        }
+        PuritanAudioProcessor::getInstance()->getPadPlayers()->at(m_index)->setEnd(normalisedPos);
     }
 
-    void PadControls::onSampleChanged(int index, std::shared_ptr<PadInfo> newPadInfo)
+
+    void PadControls::onSampleChanged(PURITAN_UNUSED int index, std::shared_ptr<PadInfo> newPadInfo)
     {
-        if (index != m_selectedPadIndex) return;
         m_linkedPadInfo = newPadInfo;
         if (m_linkedPadInfo.get() != nullptr) {
             m_nameReadout.setText(m_linkedPadInfo->name, juce::dontSendNotification);
-            m_thumbnail.setSource(new juce::FileInputSource(juce::File(m_linkedPadInfo->path)));
+            m_waveformDisplay.setSource(juce::File(m_linkedPadInfo->path));
         }
     }
 
-    void PadControls::paint(juce::Graphics& g)
+    void PadControls::paint(PURITAN_UNUSED juce::Graphics& g)
     {
-        juce::Rectangle<int> thumbnailBounds(0, getHeight() / 12, getWidth(), getHeight() / 3);
-        if (m_thumbnail.getNumChannels() == 0) {
-            paintNoThumbnail(g, thumbnailBounds);
-        }
-        else {
-            paintThumbnail(g, thumbnailBounds);
-        }
     }
 
     void PadControls::resized()
     {
         m_nameReadout.setBounds(0, 0, getWidth(), getHeight() / 12);
+        m_waveformDisplay.setBounds(0, getHeight() / 12, getWidth(), getHeight() / 3);
+        //m_panSlider.setBounds(0, getHeight() / 12 + getHeight() / 3, getWidth() / 16, getWidth() / 16);
     }
 
-    void PadControls::paintNoThumbnail(juce::Graphics& g, juce::Rectangle<int>& bounds)
-    {
-        g.setColour(LF::getPaletteColour(LF::PALETTE_COLOUR::BLACK));
-        g.drawRect(bounds);
-        g.setColour(LF::getPaletteColour(LF::PALETTE_COLOUR::BLACK));
-        g.setFont(LF::getFont(14.0f));
-        g.drawFittedText("No File Loaded", bounds, juce::Justification::centred, 1);
-    }
-
-    void PadControls::paintThumbnail(juce::Graphics& g, juce::Rectangle<int>& bounds)
-    {
-        g.setColour(LF::getPaletteColour(LF::PALETTE_COLOUR::BLACK));
-        g.drawRect(bounds);
-        g.setColour(LF::getPaletteColour(LF::PALETTE_COLOUR::PURPLE_H));
-        m_thumbnail.drawChannels(g, bounds, 0.0, m_thumbnail.getTotalLength(), 1.0f);
-    }
 }

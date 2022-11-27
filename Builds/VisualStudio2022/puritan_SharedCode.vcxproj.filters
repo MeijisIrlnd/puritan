@@ -8,6 +8,9 @@
     <Filter Include="puritan\Resources\Fonts">
       <UniqueIdentifier>{EC304542-5948-2D01-C5F4-CA31925CE7E0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="puritan\Resources\Sprites\Controls">
+      <UniqueIdentifier>{0795F973-7164-5334-15DB-F28DC307E040}</UniqueIdentifier>
+    </Filter>
     <Filter Include="puritan\Resources\Sprites\Pad">
       <UniqueIdentifier>{11FC37F4-F3E1-A34D-6F45-C6234F5F0FED}</UniqueIdentifier>
     </Filter>
@@ -520,6 +523,12 @@
     <ClCompile Include="..\..\Source\Utils\Utilities.cpp">
       <Filter>puritan\Source\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\UI\Behaviours\DragHandleParameterAttachment.cpp">
+      <Filter>puritan\Source\UI\Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UI\DragHandle.cpp">
+      <Filter>puritan\Source\UI</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\UI\LF.cpp">
       <Filter>puritan\Source\UI</Filter>
     </ClCompile>
@@ -530,6 +539,9 @@
       <Filter>puritan\Source\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\UI\PadManager.cpp">
+      <Filter>puritan\Source\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UI\WaveformDisplay.cpp">
       <Filter>puritan\Source\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
@@ -2784,6 +2796,12 @@
     <ClInclude Include="..\..\Source\UI\Behaviours\AnimatedComponent.h">
       <Filter>puritan\Source\UI\Behaviours</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\UI\Behaviours\DragHandleParameterAttachment.h">
+      <Filter>puritan\Source\UI\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UI\DragHandle.h">
+      <Filter>puritan\Source\UI</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\UI\LF.h">
       <Filter>puritan\Source\UI</Filter>
     </ClInclude>
@@ -2794,6 +2812,9 @@
       <Filter>puritan\Source\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\UI\PadManager.h">
+      <Filter>puritan\Source\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UI\WaveformDisplay.h">
       <Filter>puritan\Source\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
@@ -5380,6 +5401,12 @@
     </None>
     <None Include="..\..\Resources\Fonts\PixelTandysoft-0rJG.ttf">
       <Filter>puritan\Resources\Fonts</Filter>
+    </None>
+    <None Include="..\..\Resources\Sprites\Controls\MixerHandle.png">
+      <Filter>puritan\Resources\Sprites\Controls</Filter>
+    </None>
+    <None Include="..\..\Resources\Sprites\Controls\RotaryHandle.png">
+      <Filter>puritan\Resources\Sprites\Controls</Filter>
     </None>
     <None Include="..\..\Resources\Sprites\Pad\puritan_pad.png">
       <Filter>puritan\Resources\Sprites\Pad</Filter>

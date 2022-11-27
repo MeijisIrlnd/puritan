@@ -21,7 +21,6 @@ PuritanAudioProcessorEditor::PuritanAudioProcessorEditor (PuritanAudioProcessor&
     m_fileBrowser.setLookAndFeel(&m_lf);
     addAndMakeVisible(&m_fileBrowser);
     m_fileBrowser.addListener(this);
-    addAndMakeVisible(&m_padControls);
 }
 
 PuritanAudioProcessorEditor::~PuritanAudioProcessorEditor()
@@ -63,6 +62,5 @@ void PuritanAudioProcessorEditor::paint (juce::Graphics& g)
 void PuritanAudioProcessorEditor::resized()
 {
     m_fileBrowser.setBounds(0, 0, getWidth() / 3, getHeight());
-    m_padManager.setBounds(getWidth() / 3, 10, static_cast<int>(getWidth() * 0.666666666), static_cast<int>(getWidth() * 0.66666666));
-    m_padControls.setBounds(m_padManager.getX(), 10 + m_padManager.getHeight(), m_padManager.getWidth(), getHeight() - 10 - m_padManager.getHeight());
+    m_padManager.setBounds(getWidth() / 3, 10, static_cast<int>(getWidth() * 0.666666666), getHeight());
 }
