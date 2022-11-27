@@ -40,7 +40,8 @@ namespace Puritan::Audio
             if (m_currentSample >= m_linkedInfo->audioData.getNumSamples() * m_normalisedEnd) return;
             for (auto channel = 0; channel < bufferToFill.buffer->getNumChannels(); channel++)
             {
-                write[channel][sample] += read[channel][m_currentSample];
+                float panToUse = channel == 0 ? std::sinf(m_pan * juce::MathConstants<float>::halfPi) : std::cosf(m_pan * juce::MathConstants<float>::halfPi);
+                write[channel][sample] += read[channel][m_currentSample] * panToUse;
             }
             ++m_currentSample;
         }

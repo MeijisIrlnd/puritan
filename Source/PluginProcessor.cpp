@@ -210,6 +210,7 @@ void PuritanAudioProcessor::parameterChanged(const juce::String& parameterID, fl
         auto paramName = parameterID.substring(parameterID.indexOf("_") + 1);
         if (paramName == "StartTime") { m_padPlayers[padNum]->setStart(static_cast<double>(newValue)); }
         else if (paramName == "EndTime") { m_padPlayers[padNum]->setEnd(static_cast<double>(newValue)); }
+        else if (paramName == "Pan") { m_padPlayers[padNum]->setPan(newValue); }
     }
 }
 
@@ -218,9 +219,9 @@ juce::AudioProcessorValueTreeState::ParameterLayout PuritanAudioProcessor::creat
     juce::AudioProcessorValueTreeState::ParameterLayout layout;
     for (auto i = 0; i < 16; i++)
     {
-        std::string padName = fmt::format("Pad{}", i);
-        layout.add(std::make_unique<juce::AudioParameterFloat>(fmt::format("{}_StartTime", padName), fmt::format("{}_StartTime", padName), juce::NormalisableRange<float>(0, 1, 0.001f), 0.0f));
-        layout.add(std::make_unique<juce::AudioParameterFloat>(fmt::format("{}_EndTime", padName), fmt::format("{}_EndTime", padName), juce::NormalisableRange<float>(0, 1, 0.001f), 1.0f));
+        layout.add(std::make_unique<juce::AudioParameterFloat>(fmt::format("Pad{}_StartTime", i), fmt::format("Pad{}_StartTime",i), juce::NormalisableRange<float>(0, 1, 0.001f), 0.0f));
+        layout.add(std::make_unique<juce::AudioParameterFloat>(fmt::format("Pad{}_EndTime", i), fmt::format("Pad{}_EndTime", i), juce::NormalisableRange<float>(0, 1, 0.001f), 1.0f));
+        layout.add(std::make_unique<juce::AudioParameterFloat>(fmt::format("Pad{}_Pan", i), fmt::format("Pad{}_Pan", i), juce::NormalisableRange<float>(0, 1, 0.01f), 0.5f));
     }
     return layout;
 }
@@ -229,9 +230,9 @@ void PuritanAudioProcessor::registerParamListeners()
 {
     for (auto i = 0; i < 16; i++)
     {
-        std::string padName = fmt::format("Pad{}", i);
-        m_tree.addParameterListener(fmt::format("{}_StartTime", padName), this);
-        m_tree.addParameterListener(fmt::format("{}_EndTime", padName), this);
+        m_tree.addParameterListener(fmt::format("Pad{}_StartTime", i), this);
+        m_tree.addParameterListener(fmt::format("Pad{}_EndTime", i), this);
+        m_tree.addParameterListener(fmt::format("Pad{}_Pan", i), this);
     }
 }
 

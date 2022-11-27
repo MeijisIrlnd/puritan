@@ -33,5 +33,7 @@ namespace Puritan::UI
         WaveformDisplay m_waveformDisplay;
         std::pair<int, int> m_keyRange;
         juce::Slider m_panSlider;
+        std::unique_ptr<juce::SliderParameterAttachment> m_panSliderAttachment;
+        juce::Label m_panLabel;
     };
 }

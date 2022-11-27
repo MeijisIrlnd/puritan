@@ -16,12 +16,16 @@ namespace Puritan::UI
     PadControls::PadControls(const int index) : m_index(index),
         m_keyRange(m_index, m_index), m_waveformDisplay(index)
     {
+        auto* tree = PuritanAudioProcessor::getInstance()->getTree();
         m_nameReadout.setJustificationType(juce::Justification::centred);
         addAndMakeVisible(&m_nameReadout);
+        m_panLabel.setText("Pan", juce::dontSendNotification);
+        m_panLabel.setJustificationType(juce::Justification::centred);
         m_panSlider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
-        m_panSlider.setRange(0, 1, 0.01);
         m_panSlider.setTextBoxStyle(juce::Slider::NoTextBox, false, 0, 0);
+        m_panLabel.attachToComponent(&m_panSlider, false);
         addAndMakeVisible(&m_panSlider);
+        m_panSliderAttachment.reset(new juce::SliderParameterAttachment(*tree->getParameter(fmt::format("Pad{}_Pan", m_index)), m_panSlider, nullptr));
         addAndMakeVisible(&m_waveformDisplay);
         PuritanAudioProcessor::getInstance()->getPadPlayers()->at(m_index)->addListener(this);
     }
@@ -62,7 +66,7 @@ namespace Puritan::UI
     {
         m_nameReadout.setBounds(0, 0, getWidth(), getHeight() / 12);
         m_waveformDisplay.setBounds(0, getHeight() / 12, getWidth(), getHeight() / 3);
-        //m_panSlider.setBounds(0, getHeight() / 12 + getHeight() / 3, getWidth() / 16, getWidth() / 16);
+        m_panSlider.setBounds(0, getHeight() / 12 + getHeight() / 12 + getHeight() / 3, getWidth() / 16, getWidth() / 16);
     }
 
 }

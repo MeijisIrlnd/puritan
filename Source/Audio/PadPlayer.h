@@ -32,7 +32,7 @@ namespace Puritan::Audio
         }
         PURITAN_INLINE void setStart(double newStart) { m_normalisedStart = newStart; }
         PURITAN_INLINE void setEnd(double newEnd) { m_normalisedEnd = newEnd; }
-
+        PURITAN_INLINE void setPan(float newPan) { m_pan = newPan; }
         void setSample(const juce::File& toLoad);
         void prepareToPlay(int samplesPerBlockExpected, double sampleRate);
         void getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill);
@@ -48,5 +48,6 @@ namespace Puritan::Audio
         bool m_padPlaying{ false };
         std::uint64_t m_currentSample{ 0 };
         double m_normalisedStart{ 0 }, m_normalisedEnd{ 1 };
+        float m_pan{ 0.5f };
     };
 }
