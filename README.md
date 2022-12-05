@@ -1,8 +1,8 @@
 # puritan
 <h2>what if native instruments battery but worse?</h2>
 we're about to find out
-like basically all of my personal projects, this is a WIP, don't expect it to actually be usable for a while
-![image](https://user-images.githubusercontent.com/38221014/205535478-71308224-ae9e-4f68-b288-2b098d2c7beb.png)
+like basically all of my personal projects, this is a WIP, don't expect it to actually be usable for a while..<br>
+![image](https://user-images.githubusercontent.com/38221014/205535572-f00adec7-7e93-44c2-b79d-47d9e7f87a78.png)
 
 ## dependencies:
 - JUCE framework
