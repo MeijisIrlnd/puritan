@@ -2,7 +2,10 @@
 <h2>what if native instruments battery but worse?</h2>
 we're about to find out
 like basically all of my personal projects, this is a WIP, don't expect it to actually be usable for a while..<br>
-![image](https://user-images.githubusercontent.com/38221014/205535572-f00adec7-7e93-44c2-b79d-47d9e7f87a78.png)
+<br>
+
+![PuritanPreview](https://user-images.githubusercontent.com/38221014/205535782-02b26ac7-faa7-4acf-a6d6-2f897a919605.png)
+
 
 ## dependencies:
 - JUCE framework
