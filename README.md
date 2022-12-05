@@ -1,5 +1,6 @@
 # puritan
 <h2>what if native instruments battery but worse?</h2>
+<h6>what if it looked like a calculator</h6>
 we're about to find out
 like basically all of my personal projects, this is a WIP, don't expect it to actually be usable for a while..<br>
 <br>
