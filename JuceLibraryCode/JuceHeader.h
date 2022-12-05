@@ -27,6 +27,7 @@
 #include <juce_gui_basics/juce_gui_basics.h>
 #include <juce_gui_extra/juce_gui_extra.h>
 #include <juce_jif/juce_jif.h>
+#include <SDSP/SDSP.h>
 
 #include "BinaryData.h"
 

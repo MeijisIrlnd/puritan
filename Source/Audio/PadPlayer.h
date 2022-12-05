@@ -12,6 +12,7 @@
 #include <JuceHeader.h>
 #include <Types/PadInfo.h>
 #include <Utils/Macros.h>
+#include <Audio/Effects/Bitcrusher.h>
 namespace Puritan::Audio
 {
     class PadPlayer
@@ -33,6 +34,8 @@ namespace Puritan::Audio
         PURITAN_INLINE void setStart(double newStart) { m_normalisedStart = newStart; }
         PURITAN_INLINE void setEnd(double newEnd) { m_normalisedEnd = newEnd; }
         PURITAN_INLINE void setPan(float newPan) { m_pan = newPan; }
+        PURITAN_INLINE void setVolume(float newVolume) { m_volume = newVolume; }
+        PURITAN_INLINE void setBitcrushAmount(double newAmt) { m_bitcrusher.setAmount(newAmt); }
         void setSample(const juce::File& toLoad);
         void prepareToPlay(int samplesPerBlockExpected, double sampleRate);
         void getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill);
@@ -49,5 +52,7 @@ namespace Puritan::Audio
         std::uint64_t m_currentSample{ 0 };
         double m_normalisedStart{ 0 }, m_normalisedEnd{ 1 };
         float m_pan{ 0.5f };
+        float m_volume{ 1.0f };
+        Effects::Bitcrusher m_bitcrusher;
     };
 }

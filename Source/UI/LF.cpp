@@ -17,7 +17,9 @@ namespace Puritan::UI
 
     LF::LF()
     {
+        m_vThumb = juce::ImageCache::getFromMemory(BinaryData::MixerHandle_png, BinaryData::MixerHandle_pngSize);
         m_rThumb = juce::ImageCache::getFromMemory(BinaryData::RotaryHandle_png, BinaryData::RotaryHandle_pngSize);
+
         //5E315A,8B3F5D,B96155,F3A65E,FFE577,CFFE70,8FDE5E,3CA270,3D6F70,323D4F,322946,473C78,4A5BAB,4DA6FF,66FFE3,FFFFEB,C3C2D0,7F7E8E,616070,43434F,282735,3E2346,572A4B,964252,E36856,FFB470,FE9166,EA564A,AF305B,74275D,422544,59265E,80366B,BE4882,FE6B97,FFB5B6
         setDefaultSansSerifTypeface(m_font.getTypefacePtr());
         m_primaryBackgroundColour = getPaletteColour(PALETTE_COLOUR::CREAM);
@@ -136,6 +138,106 @@ namespace Puritan::UI
 
         if (auto* listAsComp = dynamic_cast<Component*> (fileListComponent))
             listAsComp->setBounds(b.reduced(0, 10));
+    }
+
+    void LF::drawLinearSlider(juce::Graphics& g, int x, int y, int width, int height, float sliderPos, float minSliderPos, float maxSliderPos, const juce::Slider::SliderStyle style, juce::Slider& slider)
+    {
+        using namespace juce;
+        if (slider.isBar())
+        {
+            g.setColour(slider.findColour(Slider::trackColourId));
+            g.fillRect(slider.isHorizontal() ? Rectangle<float>(static_cast<float> (x), (float)y + 0.5f, sliderPos - (float)x, (float)height - 1.0f)
+                : Rectangle<float>((float)x + 0.5f, sliderPos, (float)width - 1.0f, (float)y + ((float)height - sliderPos)));
+        }
+        else
+        {
+            auto thumbWidth = width / 4;
+            auto thumbHeight = height / 6;
+            int yOffset = thumbHeight / 2;
+            maxSliderPos += yOffset;
+            minSliderPos -= yOffset;
+            auto isTwoVal = (style == Slider::SliderStyle::TwoValueVertical || style == Slider::SliderStyle::TwoValueHorizontal);
+            auto isThreeVal = (style == Slider::SliderStyle::ThreeValueVertical || style == Slider::SliderStyle::ThreeValueHorizontal);
+
+            auto trackWidth = jmin(6.0f, slider.isHorizontal() ? (float)height * 0.25f : (float)width * 0.25f);
+
+            Point<float> startPoint(slider.isHorizontal() ? (float)x : (float)x + (float)width * 0.5f,
+                slider.isHorizontal() ? (float)y + (float)height * 0.5f : (float)(height + y - yOffset));
+
+            Point<float> endPoint(slider.isHorizontal() ? (float)(width + x) : startPoint.x,
+                slider.isHorizontal() ? startPoint.y : (float)y + (yOffset));
+
+            Path backgroundTrack;
+            backgroundTrack.startNewSubPath(startPoint);
+            backgroundTrack.lineTo(endPoint);
+            g.setColour(slider.findColour(Slider::backgroundColourId));
+            g.strokePath(backgroundTrack, { trackWidth, PathStrokeType::curved, PathStrokeType::rounded });
+
+            Path valueTrack;
+            Point<float> minPoint, maxPoint, thumbPoint;
+
+            if (isTwoVal || isThreeVal)
+            {
+                minPoint = { slider.isHorizontal() ? minSliderPos : (float)width * 0.5f,
+                             slider.isHorizontal() ? (float)height * 0.5f : minSliderPos };
+
+                if (isThreeVal)
+                    thumbPoint = { slider.isHorizontal() ? sliderPos : (float)width * 0.5f,
+                                   slider.isHorizontal() ? (float)height * 0.5f : sliderPos };
+
+                maxPoint = { slider.isHorizontal() ? maxSliderPos : (float)width * 0.5f,
+                             slider.isHorizontal() ? (float)height * 0.5f : maxSliderPos };
+            }
+            else
+            {
+                auto kx = slider.isHorizontal() ? sliderPos : ((float)x + (float)width * 0.5f);
+                auto ky = slider.isHorizontal() ? ((float)y + (float)height * 0.5f) : sliderPos;
+
+                minPoint = startPoint;
+                maxPoint = { kx, ky };
+            }
+
+            //auto thumbWidth = getSliderThumbRadius(slider);
+
+
+            if (!isTwoVal)
+            {
+                //g.setColour(slider.findColour(Slider::thumbColourId));
+                auto thumbY = juce::jmin(static_cast<float>(height - yOffset), maxPoint.getY() - yOffset);
+                thumbY = juce::jmax(static_cast<float>(endPoint.getY() - yOffset), thumbY - yOffset);
+                juce::Rectangle<float> targetRect((width / 2.0f) - (thumbWidth / 2.0f), thumbY, static_cast<float> (thumbWidth), static_cast<float> (thumbHeight));
+                g.setImageResamplingQuality(juce::Graphics::ResamplingQuality::highResamplingQuality);
+                g.drawImage(m_vThumb, targetRect);
+                //g.setColour(juce::Colours::red);
+                //g.fillEllipse(Rectangle<float>(static_cast<float> (thumbWidth), static_cast<float> (thumbWidth)).withCentre(isThreeVal ? thumbPoint : maxPoint));
+            }
+
+            if (isTwoVal || isThreeVal)
+            {
+                auto sr = jmin(trackWidth, (slider.isHorizontal() ? (float)height : (float)width) * 0.4f);
+                auto pointerColour = slider.findColour(Slider::thumbColourId);
+
+                if (slider.isHorizontal())
+                {
+                    drawPointer(g, minSliderPos - sr,
+                        jmax(0.0f, (float)y + (float)height * 0.5f - trackWidth * 2.0f),
+                        trackWidth * 2.0f, pointerColour, 2);
+
+                    drawPointer(g, maxSliderPos - trackWidth,
+                        jmin((float)(y + height) - trackWidth * 2.0f, (float)y + (float)height * 0.5f),
+                        trackWidth * 2.0f, pointerColour, 4);
+                }
+                else
+                {
+                    //drawPointer(g, jmax(0.0f, (float)x + (float)width * 0.5f - trackWidth * 2.0f),
+                    //    minSliderPos - trackWidth,
+                    //    trackWidth * 2.0f, pointerColour, 1);
+                    //
+                    //drawPointer(g, jmin((float)(x + width) - trackWidth * 2.0f, (float)x + (float)width * 0.5f), maxSliderPos - sr,
+                    //    trackWidth * 2.0f, pointerColour, 3);
+                }
+            }
+        }
     }
 
     void LF::drawRotarySlider(juce::Graphics& g, int x, int y, int width, int height, float sliderPos, float rotaryStartAngle, float rotaryEndAngle, juce::Slider& slider)

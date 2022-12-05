@@ -33,6 +33,7 @@ namespace Puritan::UI
         void mouseDrag(const juce::MouseEvent& ev) override;
         void mouseUp(PURITAN_UNUSED const juce::MouseEvent& ev) override;
         void setValue(float newValue);
+        void reset();
         void paint(juce::Graphics& g) override;
         void resized() override;
     private: 

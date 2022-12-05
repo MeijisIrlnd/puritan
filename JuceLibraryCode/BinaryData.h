@@ -17,6 +17,9 @@ namespace BinaryData
     extern const char*   pad_press_512_512_gif;
     const int            pad_press_512_512_gifSize = 154940;
 
+    extern const char*   ScanLine_gif;
+    const int            ScanLine_gifSize = 5319;
+
     extern const char*   PixelTandysoft0rJG_ttf;
     const int            PixelTandysoft0rJG_ttfSize = 23996;
 
@@ -36,7 +39,7 @@ namespace BinaryData
     const int            drinkLove_gifSize = 362644;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 9;
+    const int namedResourceListSize = 10;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];

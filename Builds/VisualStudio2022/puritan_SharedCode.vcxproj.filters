@@ -23,6 +23,9 @@
     <Filter Include="puritan\Resources">
       <UniqueIdentifier>{CE830173-1ED5-6440-CCEE-E747D367F7EB}</UniqueIdentifier>
     </Filter>
+    <Filter Include="puritan\Source\Audio\Effects">
+      <UniqueIdentifier>{D3DA621B-4FD8-B9DA-A839-2CD3145895EA}</UniqueIdentifier>
+    </Filter>
     <Filter Include="puritan\Source\Audio">
       <UniqueIdentifier>{A7DD3F45-D472-814A-62C6-BC64E8571AD8}</UniqueIdentifier>
     </Filter>
@@ -31,6 +34,9 @@
     </Filter>
     <Filter Include="puritan\Source\Utils">
       <UniqueIdentifier>{BDB4D145-5BC7-4C54-5BD6-C0647871EF87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="puritan\Source\UI\Shaders">
+      <UniqueIdentifier>{0A1592F2-B378-B468-8E17-6106603A515F}</UniqueIdentifier>
     </Filter>
     <Filter Include="puritan\Source\UI\Behaviours">
       <UniqueIdentifier>{98486199-CD60-EC40-3922-32D15F4A918B}</UniqueIdentifier>
@@ -500,6 +506,12 @@
     <Filter Include="JUCE Modules\juce_jif">
       <UniqueIdentifier>{35B3DD6C-649F-E032-0966-7EEC9111DE91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="JUCE Modules\SDSP\Filters">
+      <UniqueIdentifier>{74521886-81BC-27EB-65FE-B700432D9B0A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\SDSP">
+      <UniqueIdentifier>{A8DCDD58-F739-E9F1-7B3D-421F3AE2B84A}</UniqueIdentifier>
+    </Filter>
     <Filter Include="JUCE Modules">
       <UniqueIdentifier>{FE955B6B-68AC-AA07-70D8-2413F6DB65C8}</UniqueIdentifier>
     </Filter>
@@ -508,6 +520,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Audio\Effects\Bitcrusher.cpp">
+      <Filter>puritan\Source\Audio\Effects</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Audio\FilePreviewPlayer.cpp">
       <Filter>puritan\Source\Audio</Filter>
     </ClCompile>
@@ -522,6 +537,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Utils\Utilities.cpp">
       <Filter>puritan\Source\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UI\Shaders\SmokeShader.cpp">
+      <Filter>puritan\Source\UI\Shaders</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\UI\Behaviours\DragHandleParameterAttachment.cpp">
       <Filter>puritan\Source\UI\Behaviours</Filter>
@@ -539,6 +557,9 @@
       <Filter>puritan\Source\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\UI\PadManager.cpp">
+      <Filter>puritan\Source\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UI\PadMixArea.cpp">
       <Filter>puritan\Source\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\UI\WaveformDisplay.cpp">
@@ -2772,6 +2793,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Audio\Effects\Bitcrusher.h">
+      <Filter>puritan\Source\Audio\Effects</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Audio\FilePreviewPlayer.h">
       <Filter>puritan\Source\Audio</Filter>
     </ClInclude>
@@ -2793,6 +2817,15 @@
     <ClInclude Include="..\..\Source\Utils\Utilities.h">
       <Filter>puritan\Source\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\UI\Shaders\NoiseShader.h">
+      <Filter>puritan\Source\UI\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UI\Shaders\Shader.h">
+      <Filter>puritan\Source\UI\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UI\Shaders\SmokeShader.h">
+      <Filter>puritan\Source\UI\Shaders</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\UI\Behaviours\AnimatedComponent.h">
       <Filter>puritan\Source\UI\Behaviours</Filter>
     </ClInclude>
@@ -2812,6 +2845,9 @@
       <Filter>puritan\Source\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\UI\PadManager.h">
+      <Filter>puritan\Source\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UI\PadMixArea.h">
       <Filter>puritan\Source\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\UI\WaveformDisplay.h">
@@ -5376,8 +5412,35 @@
     <ClInclude Include="..\..\..\..\..\..\..\Program Files\JUCE\UserModules\juce_jif\gif_load.h">
       <Filter>JUCE Modules\juce_jif</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\Program Files\JUCE\UserModules\juce_jif\GIFLooper.h">
+      <Filter>JUCE Modules\juce_jif</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\Program Files\JUCE\UserModules\juce_jif\Macros.h">
+      <Filter>JUCE Modules\juce_jif</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\..\Program Files\JUCE\UserModules\juce_jif\juce_jif.h">
       <Filter>JUCE Modules\juce_jif</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\Program Files\JUCE\UserModules\SDSP\Filters\DSPBiquad.h">
+      <Filter>JUCE Modules\SDSP\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\Program Files\JUCE\UserModules\SDSP\Filters\Filters.h">
+      <Filter>JUCE Modules\SDSP\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\Program Files\JUCE\UserModules\SDSP\Filters\RBJCoefficients.h">
+      <Filter>JUCE Modules\SDSP\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\Program Files\JUCE\UserModules\SDSP\Filters\SmoothedFilterCoefficients.h">
+      <Filter>JUCE Modules\SDSP\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\Program Files\JUCE\UserModules\SDSP\KMath.h">
+      <Filter>JUCE Modules\SDSP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\Program Files\JUCE\UserModules\SDSP\Macros.h">
+      <Filter>JUCE Modules\SDSP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\Program Files\JUCE\UserModules\SDSP\SDSP.h">
+      <Filter>JUCE Modules\SDSP</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\BinaryData.h">
       <Filter>JUCE Library Code</Filter>
@@ -5397,6 +5460,9 @@
       <Filter>puritan\Resources\Animations</Filter>
     </None>
     <None Include="..\..\Resources\Animations\pad_press_512_512.gif">
+      <Filter>puritan\Resources\Animations</Filter>
+    </None>
+    <None Include="..\..\Resources\Animations\ScanLine.gif">
       <Filter>puritan\Resources\Animations</Filter>
     </None>
     <None Include="..\..\Resources\Fonts\PixelTandysoft-0rJG.ttf">

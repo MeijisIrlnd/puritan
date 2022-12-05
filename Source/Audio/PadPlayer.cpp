@@ -25,8 +25,9 @@ namespace Puritan::Audio
         }
     }
 
-    void PadPlayer::prepareToPlay(PURITAN_UNUSED int samplesPerBlockExpected, PURITAN_UNUSED double sampleRate)
+    void PadPlayer::prepareToPlay(int samplesPerBlockExpected, double sampleRate)
     {
+        m_bitcrusher.prepareToPlay(samplesPerBlockExpected, sampleRate);
     }
 
     void PadPlayer::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill)
@@ -41,14 +42,16 @@ namespace Puritan::Audio
             for (auto channel = 0; channel < bufferToFill.buffer->getNumChannels(); channel++)
             {
                 float panToUse = channel == 0 ? std::sinf(m_pan * juce::MathConstants<float>::halfPi) : std::cosf(m_pan * juce::MathConstants<float>::halfPi);
-                write[channel][sample] += read[channel][m_currentSample] * panToUse;
+                write[channel][sample] += (read[channel][m_currentSample] * panToUse) * m_volume;
             }
             ++m_currentSample;
         }
+        m_bitcrusher.getNextAudioBlock(bufferToFill);
     }
 
     void PadPlayer::releaseResources()
     {
+        m_bitcrusher.releaseResources();
     }
 
     void PadPlayer::play()

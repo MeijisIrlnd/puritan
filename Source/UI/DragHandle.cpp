@@ -54,6 +54,11 @@ namespace Puritan::UI
         dynamic_cast<WaveformDisplay*>(getParentComponent())->handleDragged(this, scaledX);
     }
 
+    void DragHandle::reset()
+    {
+
+    }
+
     void DragHandle::paint(juce::Graphics& g)
     {
         g.setColour(m_handleColour);

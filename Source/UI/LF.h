@@ -73,6 +73,12 @@ namespace Puritan::UI
             juce::TextEditor* filenameBox,
             juce::Button* goUpButton) override;
 
+        void drawLinearSlider(juce::Graphics& g, int x, int y, int width, int height,
+            float sliderPos,
+            float minSliderPos,
+            float maxSliderPos,
+            const juce::Slider::SliderStyle style, juce::Slider& slider);
+
         void drawRotarySlider(juce::Graphics&, int x, int y, int width, int height,
             float sliderPosProportional, float rotaryStartAngle,
             float rotaryEndAngle, juce::Slider&) override;
@@ -97,7 +103,7 @@ namespace Puritan::UI
     private: 
         static juce::Font m_font;
         static std::unordered_map<PALETTE_COLOUR, juce::Colour> m_palette;
-        juce::Image m_rThumb;
+        juce::Image m_vThumb, m_rThumb;
         juce::Colour m_primaryBackgroundColour, m_primaryHighlightColour, m_primaryTextColour;
     };
 }

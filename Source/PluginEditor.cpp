@@ -10,8 +10,9 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-PuritanAudioProcessorEditor::PuritanAudioProcessorEditor (PuritanAudioProcessor& p)
-    : m_audioFileFilter(juce::String("Filter for audio files")), AudioProcessorEditor(&p), audioProcessor(p), m_fileBrowser(juce::FileBrowserComponent::FileChooserFlags::openMode | juce::FileBrowserComponent::FileChooserFlags::canSelectFiles | juce::FileBrowserComponent::FileChooserFlags::useTreeView, juce::File(), &m_audioFileFilter, nullptr)
+PuritanAudioProcessorEditor::PuritanAudioProcessorEditor(PuritanAudioProcessor& p)
+    : m_audioFileFilter(juce::String("Filter for audio files")), AudioProcessorEditor(&p), audioProcessor(p), m_fileBrowser(juce::FileBrowserComponent::FileChooserFlags::openMode | juce::FileBrowserComponent::FileChooserFlags::canSelectFiles | juce::FileBrowserComponent::FileChooserFlags::useTreeView, juce::File(), &m_audioFileFilter, nullptr),
+    m_scanline(juce::MemoryBlock(BinaryData::ScanLine_gif, BinaryData::ScanLine_gifSize)), m_noiseShader(50, 0.05)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
@@ -20,6 +21,10 @@ PuritanAudioProcessorEditor::PuritanAudioProcessorEditor (PuritanAudioProcessor&
     addAndMakeVisible(&m_padManager);
     m_fileBrowser.setLookAndFeel(&m_lf);
     addAndMakeVisible(&m_fileBrowser);
+    addAndMakeVisible(&m_noiseShader);
+    addAndMakeVisible(&m_scanline);
+    m_scanline.setAlphaMultiplier(0.1);
+    m_scanline.start();
     m_fileBrowser.addListener(this);
 }
 
@@ -61,6 +66,9 @@ void PuritanAudioProcessorEditor::paint (juce::Graphics& g)
 
 void PuritanAudioProcessorEditor::resized()
 {
-    m_fileBrowser.setBounds(0, 0, getWidth() / 3, getHeight());
-    m_padManager.setBounds(getWidth() / 3, 10, static_cast<int>(getWidth() * 0.666666666), getHeight());
+    m_padManager.setBounds(0, 10, static_cast<int>(getWidth()), getHeight());
+    m_fileBrowser.setBounds(0, 0, getWidth() / 3, getHeight() / 2);
+    m_noiseShader.setBounds(getLocalBounds());
+    m_scanline.setBounds(getLocalBounds());
+    //m_padManager.setBounds(getWidth() / 3, 10, static_cast<int>(getWidth() * 0.666666666), getHeight());
 }

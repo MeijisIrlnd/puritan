@@ -26,6 +26,14 @@ namespace Puritan::UI
         m_panLabel.attachToComponent(&m_panSlider, false);
         addAndMakeVisible(&m_panSlider);
         m_panSliderAttachment.reset(new juce::SliderParameterAttachment(*tree->getParameter(fmt::format("Pad{}_Pan", m_index)), m_panSlider, nullptr));
+        m_bitcrushLabel.setText("FUCK", juce::dontSendNotification);
+        m_bitcrushLabel.setJustificationType(juce::Justification::centred);
+        addAndMakeVisible(&m_bitcrushLabel);
+        m_bitcrushSlider.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+        m_bitcrushSlider.setTextBoxStyle(juce::Slider::NoTextBox, false, 0, 0);
+        addAndMakeVisible(&m_bitcrushSlider);
+        m_bitcrushLabel.attachToComponent(&m_bitcrushSlider, false);
+        m_bitcrushAttachment.reset(new juce::SliderParameterAttachment(*tree->getParameter(fmt::format("Pad{}_BitcrushAmount", m_index)), m_bitcrushSlider, nullptr));
         addAndMakeVisible(&m_waveformDisplay);
         PuritanAudioProcessor::getInstance()->getPadPlayers()->at(m_index)->addListener(this);
     }
@@ -67,6 +75,7 @@ namespace Puritan::UI
         m_nameReadout.setBounds(0, 0, getWidth(), getHeight() / 12);
         m_waveformDisplay.setBounds(0, getHeight() / 12, getWidth(), getHeight() / 3);
         m_panSlider.setBounds(0, getHeight() / 12 + getHeight() / 12 + getHeight() / 3, getWidth() / 16, getWidth() / 16);
+        m_bitcrushSlider.setBounds(getWidth() / 8, m_panSlider.getY(), getWidth() / 16, getWidth() / 16);
     }
 
 }

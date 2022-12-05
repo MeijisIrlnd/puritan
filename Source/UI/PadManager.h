@@ -11,6 +11,7 @@
 #pragma once
 #include <UI/Pad.h>
 #include <UI/PadControls.h>
+#include <UI/PadMixArea.h>
 namespace Puritan::UI
 {
     class PadManager : public juce::Component, public Pad::Listener
@@ -34,5 +35,6 @@ namespace Puritan::UI
         // Pads should be a 4x4 grid 
         std::vector<std::unique_ptr<Pad> > m_pads;
         std::vector<std::unique_ptr<PadControls> > m_padControls;
+        std::vector<std::unique_ptr<PadMixArea> > m_padMixAreas;
     };
 }

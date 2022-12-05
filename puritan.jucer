@@ -11,6 +11,7 @@
               file="Resources/Animations/pad_press_128_128.gif"/>
         <FILE id="JURjjj" name="pad_press_512_512.gif" compile="0" resource="1"
               file="Resources/Animations/pad_press_512_512.gif"/>
+        <FILE id="iQwYMt" name="ScanLine.gif" compile="0" resource="1" file="Resources/Animations/ScanLine.gif"/>
       </GROUP>
       <GROUP id="{08580DDF-D9ED-2586-EC44-5FFEA9AD37C1}" name="Fonts">
         <FILE id="C1bBWO" name="PixelTandysoft-0rJG.ttf" compile="0" resource="1"
@@ -34,6 +35,10 @@
     </GROUP>
     <GROUP id="{A8C6BFE7-8019-927A-8B04-B69FEE56D504}" name="Source">
       <GROUP id="{4CC71CE0-86C0-CC8E-1DD2-EB128D5A9616}" name="Audio">
+        <GROUP id="{FA39F3CD-63B4-E6B8-2FF2-0C362F996B62}" name="Effects">
+          <FILE id="xNc7GZ" name="Bitcrusher.cpp" compile="1" resource="0" file="Source/Audio/Effects/Bitcrusher.cpp"/>
+          <FILE id="Pm8S8t" name="Bitcrusher.h" compile="0" resource="0" file="Source/Audio/Effects/Bitcrusher.h"/>
+        </GROUP>
         <FILE id="iDcq0n" name="FilePreviewPlayer.cpp" compile="1" resource="0"
               file="Source/Audio/FilePreviewPlayer.cpp"/>
         <FILE id="r6DJAC" name="FilePreviewPlayer.h" compile="0" resource="0"
@@ -56,6 +61,12 @@
         <FILE id="JRaS1h" name="Utilities.h" compile="0" resource="0" file="Source/Utils/Utilities.h"/>
       </GROUP>
       <GROUP id="{6B2FB763-888B-6C8C-5AC9-F8A217149E76}" name="UI">
+        <GROUP id="{87336BCD-B2E5-763D-E3FC-380E0C312212}" name="Shaders">
+          <FILE id="r4bAPY" name="NoiseShader.h" compile="0" resource="0" file="Source/UI/Shaders/NoiseShader.h"/>
+          <FILE id="kis90v" name="Shader.h" compile="0" resource="0" file="Source/UI/Shaders/Shader.h"/>
+          <FILE id="CYDO6L" name="SmokeShader.cpp" compile="1" resource="0" file="Source/UI/Shaders/SmokeShader.cpp"/>
+          <FILE id="yKcNLe" name="SmokeShader.h" compile="0" resource="0" file="Source/UI/Shaders/SmokeShader.h"/>
+        </GROUP>
         <GROUP id="{6CB0523D-4E3C-219A-1064-E461C591E585}" name="Behaviours">
           <FILE id="a5ENVc" name="AnimatedComponent.h" compile="0" resource="0"
                 file="Source/UI/Behaviours/AnimatedComponent.h"/>
@@ -74,6 +85,8 @@
         <FILE id="p0rOKV" name="PadControls.h" compile="0" resource="0" file="Source/UI/PadControls.h"/>
         <FILE id="GipK50" name="PadManager.cpp" compile="1" resource="0" file="Source/UI/PadManager.cpp"/>
         <FILE id="WilPW6" name="PadManager.h" compile="0" resource="0" file="Source/UI/PadManager.h"/>
+        <FILE id="B0jfjD" name="PadMixArea.cpp" compile="1" resource="0" file="Source/UI/PadMixArea.cpp"/>
+        <FILE id="uhQDXN" name="PadMixArea.h" compile="0" resource="0" file="Source/UI/PadMixArea.h"/>
         <FILE id="r6UeKA" name="WaveformDisplay.cpp" compile="1" resource="0"
               file="Source/UI/WaveformDisplay.cpp"/>
         <FILE id="lREwHc" name="WaveformDisplay.h" compile="0" resource="0"
@@ -112,6 +125,7 @@
         <MODULEPATH id="juce_gui_basics" path="../../../../../JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../../../../JUCE/modules"/>
         <MODULEPATH id="juce_jif" path="../../../../../Program Files/JUCE/UserModules"/>
+        <MODULEPATH id="SDSP" path="../../../../../Program Files/JUCE/UserModules"/>
       </MODULEPATHS>
     </VS2022>
   </EXPORTFORMATS>
@@ -131,5 +145,6 @@
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_jif" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="SDSP" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
   </MODULES>
 </JUCERPROJECT>

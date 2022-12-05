@@ -35,5 +35,8 @@ namespace Puritan::UI
         juce::Slider m_panSlider;
         std::unique_ptr<juce::SliderParameterAttachment> m_panSliderAttachment;
         juce::Label m_panLabel;
+        juce::Label m_bitcrushLabel;
+        juce::Slider m_bitcrushSlider;
+        std::unique_ptr<juce::SliderParameterAttachment> m_bitcrushAttachment;
     };
 }

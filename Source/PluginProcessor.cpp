@@ -211,6 +211,8 @@ void PuritanAudioProcessor::parameterChanged(const juce::String& parameterID, fl
         if (paramName == "StartTime") { m_padPlayers[padNum]->setStart(static_cast<double>(newValue)); }
         else if (paramName == "EndTime") { m_padPlayers[padNum]->setEnd(static_cast<double>(newValue)); }
         else if (paramName == "Pan") { m_padPlayers[padNum]->setPan(newValue); }
+        else if (paramName == "Volume") { m_padPlayers[padNum]->setVolume(newValue); }
+        else if (paramName == "BitcrushAmount") { m_padPlayers[padNum]->setBitcrushAmount(static_cast<double>(newValue)); }
     }
 }
 
@@ -222,6 +224,8 @@ juce::AudioProcessorValueTreeState::ParameterLayout PuritanAudioProcessor::creat
         layout.add(std::make_unique<juce::AudioParameterFloat>(fmt::format("Pad{}_StartTime", i), fmt::format("Pad{}_StartTime",i), juce::NormalisableRange<float>(0, 1, 0.001f), 0.0f));
         layout.add(std::make_unique<juce::AudioParameterFloat>(fmt::format("Pad{}_EndTime", i), fmt::format("Pad{}_EndTime", i), juce::NormalisableRange<float>(0, 1, 0.001f), 1.0f));
         layout.add(std::make_unique<juce::AudioParameterFloat>(fmt::format("Pad{}_Pan", i), fmt::format("Pad{}_Pan", i), juce::NormalisableRange<float>(0, 1, 0.01f), 0.5f));
+        layout.add(std::make_unique<juce::AudioParameterFloat>(fmt::format("Pad{}_Volume", i), fmt::format("Pad{}_Volume", i), juce::NormalisableRange<float>(0, 1, 0.01f), 1.0f));
+        layout.add(std::make_unique<juce::AudioParameterFloat>(fmt::format("Pad{}_BitcrushAmount", i), fmt::format("Pad{}_BitcrushAmount", i), juce::NormalisableRange<float>(0, 1, 0.001f), 0.0f));
     }
     return layout;
 }
@@ -233,6 +237,8 @@ void PuritanAudioProcessor::registerParamListeners()
         m_tree.addParameterListener(fmt::format("Pad{}_StartTime", i), this);
         m_tree.addParameterListener(fmt::format("Pad{}_EndTime", i), this);
         m_tree.addParameterListener(fmt::format("Pad{}_Pan", i), this);
+        m_tree.addParameterListener(fmt::format("Pad{}_Volume", i), this);
+        m_tree.addParameterListener(fmt::format("Pad{}_BitcrushAmount", i), this);
     }
 }
 

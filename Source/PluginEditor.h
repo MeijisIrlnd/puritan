@@ -13,6 +13,7 @@
 #include <UI/PadManager.h>
 #include <UI/LF.h>
 #include <Utils/AudioFileFilter.h>
+#include <UI/Shaders/NoiseShader.h>
 using namespace Puritan::UI;
 
 //==============================================================================
@@ -42,5 +43,7 @@ private:
     PadManager m_padManager;
     juce::FileBrowserComponent m_fileBrowser;
     const Puritan::Utils::AudioFileFilter m_audioFileFilter;
+    Puritan::UI::Shaders::NoiseShader<512, 512> m_noiseShader;
+    GIFLooper m_scanline;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PuritanAudioProcessorEditor)
 };
